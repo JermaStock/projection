@@ -33,6 +33,4 @@ export class ProjectComponent {
       this.project$ = this.projectService.getProject(id)
     );
   }
-
-  protected readonly async = async;
 }

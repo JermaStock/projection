@@ -1,1 +1,9 @@
-<router-outlet/>
+<app-layout>
+  <app-header ngProjectAs="header"/>
+
+  <app-content ngProjectAs="main">
+    <router-outlet/>
+  </app-content>
+
+  <app-footer ngProjectAs="footer"/>
+</app-layout>
