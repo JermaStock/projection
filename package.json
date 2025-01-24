@@ -22,6 +22,7 @@
     "@taiga-ui/core": "^4.21.0",
     "@taiga-ui/icons": "^4.21.0",
     "@taiga-ui/kit": "^4.21.0",
+    "@taiga-ui/layout": "^4.21.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -37,6 +38,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "schematics-scss-migrate": "^2.3.17",
     "typescript": "~5.7.2"
   }
 }
