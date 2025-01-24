@@ -1,14 +1,22 @@
 <h1 tuiTitle="m">Projects</h1>
 
-<div class="projects">
-  @for (project of (projects$ | async); track project) {
-    <div tuiCardMedium tuiAppearance="neutral">
-      <button tuiButton
-              appearance="flat"
-              (click)="navigateToProject(project)"
-      >
-        {{ project }}
-      </button>
+<ng-container *tuiLet="projects$ | async as projects">
+
+  @if (loading$ | async; as isLoading) {
+    <tui-loader [showLoader]="isLoading" size="l"></tui-loader>
+  } @else {
+    <div class="projects">
+      @for (project of projects; track project) {
+        <div tuiCardMedium tuiAppearance="neutral">
+          <button tuiButton
+                  appearance="flat"
+                  (click)="navigateToProject(project)"
+          >
+            {{ project }}
+          </button>
+        </div>
+      }
     </div>
   }
-</div>
+
+</ng-container>

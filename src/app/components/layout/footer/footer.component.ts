@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {TuiIcon} from '@taiga-ui/core';
 
 @Component({
@@ -8,6 +8,7 @@ import {TuiIcon} from '@taiga-ui/core';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
 
