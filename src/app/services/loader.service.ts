@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Subject, tap} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class LoaderService {

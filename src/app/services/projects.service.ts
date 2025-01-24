@@ -1,7 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {combineLatest, Observable} from 'rxjs';
-import {LoaderService} from './loader.service';
+import {Observable} from 'rxjs';
 
 export interface Project {
   project: string,

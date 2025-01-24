@@ -5,7 +5,7 @@ import {TuiCardMedium} from '@taiga-ui/layout';
 import {AsyncPipe} from '@angular/common';
 import {ProjectsService} from '../../../services/projects.service';
 import {LoaderService} from '../../../services/loader.service';
-import {filter, map, switchMap, tap} from 'rxjs';
+import {filter, switchMap, tap} from 'rxjs';
 import {TuiLet} from '@taiga-ui/cdk';
 
 @Component({
@@ -41,12 +41,7 @@ export class ProjectsComponent {
     filter(Boolean),
     switchMap(() => this.projectsService.getProjects()),
     tap(() => this.loader.toggle(false)),
-    tap(console.log),
   );
-
-  sss() {
-    this.loader.toggle(true);
-  }
 
   navigateToProject(projectPath: string) {
     this.router.navigate([projectPath], {relativeTo: this.route}).then();
