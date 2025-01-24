@@ -1,0 +1,9 @@
+@use "../../../../styles/mixins" as *;
+
+.header {
+  @include section-offset();
+
+  &__title {
+    cursor: pointer;
+  }
+}
