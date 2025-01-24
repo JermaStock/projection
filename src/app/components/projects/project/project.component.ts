@@ -1,11 +1,13 @@
-import {Component, inject, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, input} from '@angular/core';
 import {Project, ProjectsService} from '../../../services/projects.service';
 import {AsyncPipe} from '@angular/common';
-import {TuiCardLarge, TuiCardMedium, TuiHeader} from '@taiga-ui/layout';
+import {TuiCardMedium, TuiHeader} from '@taiga-ui/layout';
 import {takeUntilDestroyed, toObservable} from '@angular/core/rxjs-interop';
-import {async, Observable} from 'rxjs';
-import {TuiAppearance, TuiButton} from '@taiga-ui/core';
+import {Observable, switchMap, tap} from 'rxjs';
+import {TuiAppearance, TuiButton, TuiLoader} from '@taiga-ui/core';
 import {RouterLink} from '@angular/router';
+import {LoaderService} from '../../../services/loader.service';
+import {TuiLet} from '@taiga-ui/cdk';
 
 @Component({
   selector: 'app-project',
@@ -15,22 +17,33 @@ import {RouterLink} from '@angular/router';
     TuiButton,
     RouterLink,
     TuiCardMedium,
-    TuiAppearance
+    TuiAppearance,
+    TuiLet,
+    TuiLoader
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{
+    provide: LoaderService,
+    useClass: LoaderService,
+  }]
 })
 export class ProjectComponent {
   readonly projectId = input<string>();
 
   private readonly projectService = inject(ProjectsService);
+  private readonly loader = inject(LoaderService);
 
   public project$: Observable<Array<Project>>;
+  public loading$ = this.loader.loading$;
 
   constructor() {
-    toObservable(this.projectId).pipe(takeUntilDestroyed()).subscribe(id =>
-      this.project$ = this.projectService.getProject(id)
+    this.project$ = toObservable(this.projectId).pipe(
+      switchMap(id => this.projectService.getProject(id)),
+      tap(() => this.loader.toggle(false)),
+      takeUntilDestroyed(),
     );
   }
 }

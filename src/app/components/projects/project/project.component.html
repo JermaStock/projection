@@ -1,10 +1,15 @@
 <button tuiButton appearance="secondary" size="s" routerLink="./projects">Back</button>
 
-<div class="projects">
-  @for (project of (project$ | async); track project) {
-    <div tuiCardMedium tuiAppearance="outline">
-      <h2 tuiHeader="m">{{ project.project }}</h2>
-      <p>{{ project.data }}</p>
-    </div>
+<div class="projects" *tuiLet="project$ | async as project">
+
+  @if (loading$ | async; as isLoading) {
+    <tui-loader [showLoader]="isLoading" size="l"/>
+  } @else {
+    @for (project of project; track project) {
+      <div tuiCardMedium tuiAppearance="outline">
+        <h2 tuiHeader="m">{{ project.project }}</h2>
+        <p>{{ project.data }}</p>
+      </div>
+    }
   }
 </div>

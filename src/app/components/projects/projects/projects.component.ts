@@ -1,10 +1,12 @@
-import {Component, inject} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
-import {TuiAppearance, TuiButton, TuiRoot, TuiTitle} from '@taiga-ui/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TuiAppearance, TuiButton, TuiLoader, TuiTitle} from '@taiga-ui/core';
 import {TuiCardMedium} from '@taiga-ui/layout';
-import {Observable} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {ProjectsService} from '../../../services/projects.service';
+import {LoaderService} from '../../../services/loader.service';
+import {filter, map, switchMap, tap} from 'rxjs';
+import {TuiLet} from '@taiga-ui/cdk';
 
 @Component({
   selector: 'app-projects',
@@ -14,17 +16,37 @@ import {ProjectsService} from '../../../services/projects.service';
     AsyncPipe,
     TuiAppearance,
     TuiTitle,
+    TuiLoader,
+    TuiLet,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
   standalone: true,
+  providers: [
+    {
+      provide: LoaderService,
+      useClass: LoaderService
+    },
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsComponent {
   private readonly projectsService = inject(ProjectsService);
+  private readonly loader = inject(LoaderService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
-  public projects$ = this.projectsService.getProjects();
+  public loading$ = this.loader.loading$;
+  public projects$ = this.loading$.pipe(
+    filter(Boolean),
+    switchMap(() => this.projectsService.getProjects()),
+    tap(() => this.loader.toggle(false)),
+    tap(console.log),
+  );
+
+  sss() {
+    this.loader.toggle(true);
+  }
 
   navigateToProject(projectPath: string) {
     this.router.navigate([projectPath], {relativeTo: this.route}).then();
