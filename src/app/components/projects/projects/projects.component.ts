@@ -3,9 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TuiAppearance, TuiButton, TuiLoader, TuiTitle} from '@taiga-ui/core';
 import {TuiCardMedium} from '@taiga-ui/layout';
 import {AsyncPipe} from '@angular/common';
-import {ProjectsService} from '../../../services/projects.service';
+import {Project, ProjectsService} from '../../../services/projects.service';
 import {LoaderService} from '../../../services/loader.service';
-import {filter, switchMap, tap} from 'rxjs';
+import {combineLatest, filter, map, Observable, switchMap, tap} from 'rxjs';
 import {TuiLet} from '@taiga-ui/cdk';
 
 @Component({
@@ -45,5 +45,9 @@ export class ProjectsComponent {
 
   navigateToProject(projectPath: string) {
     this.router.navigate([projectPath], {relativeTo: this.route}).then();
+  }
+
+  updateProjects() {
+    this.loader.toggle(true);
   }
 }
