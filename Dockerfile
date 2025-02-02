@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . ./
-RUN npm run build -- --output-path=/app/dist
+RUN npm run build --output-path=/app/dist
 
 FROM alpine AS deploy
 ARG TARGET_DIR=/var/www/html
