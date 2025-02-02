@@ -7,7 +7,7 @@ export interface Project {
   data: string,
 }
 
-const API = 'http://178.130.42.30:8080/projects';
+const API = 'https://random-dns-for-experiments.fun:8443/projects';
 
 @Injectable({
   providedIn: 'root',
