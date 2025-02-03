@@ -7,7 +7,7 @@ export interface Project {
   data: string,
 }
 
-const API = 'http://localhost:8089/projects';
+const API = 'http://localhost:8090/projects';
 
 @Injectable({
   providedIn: 'root',
