@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {TuiAppearance, TuiButton, TuiLoader, TuiTitle} from '@taiga-ui/core';
 import {TuiCardMedium} from '@taiga-ui/layout';
 import {AsyncPipe} from '@angular/common';
@@ -18,6 +18,7 @@ import {TuiLet} from '@taiga-ui/cdk';
     TuiTitle,
     TuiLoader,
     TuiLet,
+    RouterLink,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',

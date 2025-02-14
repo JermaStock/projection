@@ -18,6 +18,7 @@ import {LayoutComponent} from './components/layout/layout/layout.component';
     ContentComponent,
     FooterComponent,
     LayoutComponent,
+    RouterLink,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

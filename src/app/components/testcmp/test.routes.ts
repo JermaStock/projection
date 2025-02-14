@@ -1,12 +1,11 @@
 import {Routes} from '@angular/router';
-import {ProjectComponent} from './project/project.component';
-import {ProjectsComponent} from './projects/projects.component';
+import {TestcmpComponent} from './testcmp.component';
 
 export const router: Routes = [
   {
-    title: 'Projects',
+    title: 'Test CMP',
     path: '',
-    loadComponent: () => ProjectsComponent,
+    loadComponent: () => TestcmpComponent,
   },
   // {
   //   title: 'Project',

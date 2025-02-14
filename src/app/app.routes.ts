@@ -3,11 +3,16 @@ import {Routes} from '@angular/router';
 export const routes: Routes = [
   {
     title: 'Projects',
-    path: 'projects',
-    loadChildren: () => import('./components/projects/project.routes').then(mod => mod.router),
+    path: '',
+    loadChildren: () => import('./components/projects/project.routes').then(r => r.router),
+  },
+  {
+    title: 'Test cmp',
+    path: 'test-cmp',
+    loadChildren: () => import('./components/testcmp/test.routes').then(r => r.router),
   },
   {
     path: '**',
-    redirectTo: 'projects',
+    redirectTo: '',
   }
 ];
