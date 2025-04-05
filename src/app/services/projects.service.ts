@@ -7,7 +7,7 @@ export interface Project {
   data: string,
 }
 
-const API = 'http://localhost:8080/api/projects';
+const API_BASE_PATH = '/music-data-storage/api';
 
 @Injectable({
   providedIn: 'root',
@@ -16,11 +16,11 @@ export class ProjectsService {
   private readonly http = inject(HttpClient);
 
   getProjects(): Observable<Array<string>> {
-    return this.http.get<Array<string>>(API);
+    return this.http.get<Array<string>>(`${API_BASE_PATH}/projects`);
   }
 
   getProject(projectId: string | undefined): Observable<Array<Project>> | never {
     if (!projectId) throw new Error('Undefined project ID!');
-    return this.http.get<Array<Project>>(`${API}/${projectId}`);
+    return this.http.get<Array<Project>>(`${API_BASE_PATH}/projects/${projectId}`);
   }
 }
