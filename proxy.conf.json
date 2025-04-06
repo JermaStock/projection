@@ -1,0 +1,6 @@
+{
+  "/music-data-storage/api": {
+    "target": "https://random-dns-for-experiments.fun/",
+    "secure": false
+  }
+}
