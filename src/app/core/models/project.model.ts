@@ -1,4 +1,4 @@
-export interface Projects {
+export interface ProjectsList {
   name: string,
   count: number,
 }

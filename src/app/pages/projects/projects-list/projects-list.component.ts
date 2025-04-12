@@ -3,11 +3,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TuiAppearance, TuiButton, TuiLoader, TuiTitle} from '@taiga-ui/core';
 import {TuiCardMedium} from '@taiga-ui/layout';
 import {AsyncPipe} from '@angular/common';
-import {ProjectsService} from '../../../core/services/projects.service';
-import {LoaderService} from '../../../core/services/loader.service';
+import {ProjectsService} from '../services/projects.service';
+import {LoaderService} from '../../../shared/services/loader.service';
 import {filter, switchMap, tap} from 'rxjs';
 import {TuiLet} from '@taiga-ui/cdk';
-import {Projects} from '../../../core/models';
+import {ProjectsList} from '../../../core/models';
 import {TuiBadge} from '@taiga-ui/kit';
 import {CountPipe} from '../../../core/pipes/count.pipe';
 
@@ -48,7 +48,7 @@ export class ProjectsListComponent {
     tap(() => this.loader.toggle(false)),
   );
 
-  navigateToProject(project: Projects) {
+  navigateToProject(project: ProjectsList) {
     this.router.navigate([project.name], {relativeTo: this.route}).then();
   }
 
