@@ -1,12 +1,15 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TuiAppearance, TuiButton, TuiLoader, TuiTitle} from '@taiga-ui/core';
 import {TuiCardMedium} from '@taiga-ui/layout';
 import {AsyncPipe} from '@angular/common';
-import {Project, ProjectsService} from '../../../services/projects.service';
-import {LoaderService} from '../../../services/loader.service';
-import {combineLatest, filter, map, Observable, switchMap, tap} from 'rxjs';
+import {ProjectsService} from '../../../core/services/projects.service';
+import {LoaderService} from '../../../core/services/loader.service';
+import {filter, switchMap, tap} from 'rxjs';
 import {TuiLet} from '@taiga-ui/cdk';
+import {Projects} from '../../../core/models';
+import {TuiBadge} from '@taiga-ui/kit';
+import {CountPipe} from '../../../core/pipes/count.pipe';
 
 @Component({
   selector: 'app-projects',
@@ -18,10 +21,11 @@ import {TuiLet} from '@taiga-ui/cdk';
     TuiTitle,
     TuiLoader,
     TuiLet,
-    RouterLink,
+    TuiBadge,
+    CountPipe,
   ],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss',
+  templateUrl: './projects-list.component.html',
+  styleUrl: './projects-list.component.scss',
   standalone: true,
   providers: [
     {
@@ -31,7 +35,7 @@ import {TuiLet} from '@taiga-ui/cdk';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectsComponent {
+export class ProjectsListComponent {
   private readonly projectsService = inject(ProjectsService);
   private readonly loader = inject(LoaderService);
   private readonly router = inject(Router);
@@ -44,8 +48,8 @@ export class ProjectsComponent {
     tap(() => this.loader.toggle(false)),
   );
 
-  navigateToProject(projectPath: string) {
-    this.router.navigate([projectPath], {relativeTo: this.route}).then();
+  navigateToProject(project: Projects) {
+    this.router.navigate([project.name], {relativeTo: this.route}).then();
   }
 
   updateProjects() {

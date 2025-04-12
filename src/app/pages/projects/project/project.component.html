@@ -4,11 +4,13 @@
   @if (loading$ | async; as isLoading) {
     <tui-loader [showLoader]="isLoading" size="l"/>
   } @else {
+
     @for (project of project; track project) {
       <div tuiCardMedium tuiAppearance="outline">
-        <h2 tuiHeader="m">{{ project.project }}</h2>
+        <h2 tuiHeader="m">{{ project.projectName }}</h2>
         <p>{{ project.data }}</p>
       </div>
     }
+
   }
 </div>

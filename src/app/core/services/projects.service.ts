@@ -1,11 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-export interface Project {
-  project: string,
-  data: string,
-}
+import {Project, Projects} from '../models';
 
 const API_BASE_PATH = '/music-data-storage/api';
 
@@ -15,8 +11,8 @@ const API_BASE_PATH = '/music-data-storage/api';
 export class ProjectsService {
   private readonly http = inject(HttpClient);
 
-  getProjects(): Observable<Array<string>> {
-    return this.http.get<Array<string>>(`${API_BASE_PATH}/projects`);
+  getProjects(): Observable<Array<Projects>> {
+    return this.http.get<Array<Projects>>(`${API_BASE_PATH}/projects`);
   }
 
   getProject(projectId: string | undefined): Observable<Array<Project>> | never {

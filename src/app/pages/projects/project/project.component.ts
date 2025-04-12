@@ -1,25 +1,26 @@
 import {ChangeDetectionStrategy, Component, inject, input} from '@angular/core';
-import {Project, ProjectsService} from '../../../services/projects.service';
+import {ProjectsService} from '../../../core/services/projects.service';
 import {AsyncPipe} from '@angular/common';
 import {TuiCardMedium, TuiHeader} from '@taiga-ui/layout';
 import {takeUntilDestroyed, toObservable} from '@angular/core/rxjs-interop';
 import {Observable, switchMap, tap} from 'rxjs';
 import {TuiAppearance, TuiButton, TuiLoader} from '@taiga-ui/core';
 import {RouterLink} from '@angular/router';
-import {LoaderService} from '../../../services/loader.service';
+import {LoaderService} from '../../../core/services/loader.service';
 import {TuiLet} from '@taiga-ui/cdk';
+import {Project} from '../../../core/models';
 
 @Component({
   selector: 'app-project',
   imports: [
     AsyncPipe,
-    TuiHeader,
     TuiButton,
     RouterLink,
     TuiCardMedium,
     TuiAppearance,
     TuiLet,
-    TuiLoader
+    TuiLoader,
+    TuiHeader
   ],
   templateUrl: './project.component.html',
   styleUrl: './project.component.scss',

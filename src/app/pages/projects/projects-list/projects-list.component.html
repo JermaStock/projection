@@ -1,16 +1,14 @@
 <div class="projects">
   <div class="projects__header">
     <h1 tuiTitle="m">Projects</h1>
-    <button tuiButton
-            appearance="secondary"
+    <button appearance="secondary"
             (click)="updateProjects()"
             size="m"
+            tuiIconButton
     >
       refresh
     </button>
   </div>
-
-  <button routerLink="test-cmp">Go to Test CMP</button>
 
   <ng-container *tuiLet="projects$ | async as projects">
 
@@ -24,13 +22,17 @@
                     appearance="flat"
                     (click)="navigateToProject(project)"
             >
-              {{ project }}
+              {{ project.name }}
+
+              <tui-badge>{{ project.count | reduceCount }}</tui-badge>
+
             </button>
           </div>
         }
       </div>
     }
 
+    <div>Total projects: <b>{{ projects?.length }}</b></div>
   </ng-container>
 
 </div>
