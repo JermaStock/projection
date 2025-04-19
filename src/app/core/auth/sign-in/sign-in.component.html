@@ -1,6 +1,6 @@
-@defer (on timer(80)) {
+@defer (on timer(90)) {
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form">
     <div>
       <label>Login</label>
       <input formControlName="username"/>
@@ -11,7 +11,7 @@
    </div>
 
    <div>
-     <button type="submit" [disabled]="form.invalid" tuiButton>Login</button>
+     <button type="button" (click)="submit()" [disabled]="form.invalid" tuiButton>Login request</button>
    </div>
   </form>
 

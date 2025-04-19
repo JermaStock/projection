@@ -15,7 +15,7 @@ export class AuthService {
     return Endpoint.SignIn;
   }
 
-  public login(email: string, password: string): Observable<any> {
-    return this.apiService.post(this.endpoint, {email, password})
+  public auth(username: string, password: string): Observable<any> {
+    return this.apiService.post(this.endpoint, { username, password })
   }
 }
