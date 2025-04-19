@@ -5,9 +5,5 @@
   >Projects-storage projection</h1>
 
 
- @if (authStorage.get()) {
-   <button tuiButton (click)="authStorage.remove()">LOG OUT</button>
- } @else {
-   <button tuiButton routerLink="/auth/sign-in">SIGN IN</button>
- }
+ <button tuiButton (click)="logOut()">LOG OUT</button>
 </header>

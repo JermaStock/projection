@@ -1,6 +1,5 @@
 import {Routes} from '@angular/router';
 import {LoggedInGuard} from './core/guards/logged-in.guard';
-import {LoggedOutGuard} from './core/guards/logged-out.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'projects' },

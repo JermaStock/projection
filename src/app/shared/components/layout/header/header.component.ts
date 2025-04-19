@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
 import {TuiHeader} from '@taiga-ui/layout';
-import {RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {TuiButton, TuiTitle} from '@taiga-ui/core';
 import {AuthStorageService} from '../../../../core/auth/services/auth-storage.service';
 
@@ -18,5 +18,10 @@ import {AuthStorageService} from '../../../../core/auth/services/auth-storage.se
 })
 export class HeaderComponent {
   public readonly authStorage = inject(AuthStorageService);
-  public logOut$ = computed<boolean>(() => !!this.authStorage.get());
+  private router = inject(Router);
+
+  logOut(): void {
+    this.authStorage.remove();
+    this.router.navigate(['./auth/sign-in']);
+  }
 }
