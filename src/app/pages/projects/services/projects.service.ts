@@ -1,9 +1,6 @@
-import {Inject, inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Project, ProjectsList} from '../../../core/models';
-import {AbstractApiService} from '../../../core/api/services/abstract-api.service';
-import {PROJECTS_API_URI} from '../../../core/api/tokens/url.providers';
 import {Endpoint} from '../enums/endpoint.enum';
 import {ProjectsApiService} from '../../../core/api/services/projects-api.service';
 

@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import {ProjectsApiService} from '../../api/services/projects-api.service';
+import {Endpoint} from '../enum/endpoint.enum';
+import {Observable} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  constructor(private apiService: ProjectsApiService, http: HttpClient) { }
+
+  private get endpoint() {
+    return Endpoint.SignIn;
+  }
+
+  public login(email: string, password: string): Observable<any> {
+    return this.apiService.post(this.endpoint, {email, password})
+  }
+}
