@@ -2,4 +2,21 @@
 
 .footer {
   @include section-offset();
+  justify-content: flex-end;
+
+  &__credits {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__subtitle {
+    margin-bottom: 0.33rem;
+  }
+
+  .credits {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 }

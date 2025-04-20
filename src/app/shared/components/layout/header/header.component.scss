@@ -4,6 +4,10 @@
   @include section-offset();
 
   &__title {
+    display: flex;
+    gap: 0.55rem;
+    flex-direction: row;
+    align-items: center;
     cursor: pointer;
   }
 }
