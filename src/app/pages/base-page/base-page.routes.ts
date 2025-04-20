@@ -15,7 +15,6 @@ export const router: Routes = [
       },
       {
         path: 'auth',
-        canActivate: [LoggedInGuard],
         loadChildren: () => import('../auth/auth.routes').then(r => r.router),
       },
     ],
