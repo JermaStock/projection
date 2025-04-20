@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {HttpMethod} from '../../enums';
 
@@ -8,20 +8,12 @@ export abstract class AbstractApiService {
 
   protected abstract apiUri: string;
 
-  public get<T>(path: string): Observable<T> {
-    return this.request(HttpMethod.Get, path, {});
+  public get<T>(path: string, headers: HttpHeaders | {} = {}): Observable<T> {
+    return this.request(HttpMethod.Get, path, {}, headers);
   }
 
-  public post<T>(path: string, body: Object = {}): Observable<T> {
-    return this.request(HttpMethod.Post, path, body);
-  }
-
-  public put<T>(path: string, body: Object = {}): Observable<T> {
-    return this.request(HttpMethod.Put, path, body);
-  }
-
-  public patch<T>(path: string, body: Object = {}): Observable<T> {
-    return this.request(HttpMethod.Patch, path, body);
+  public post<T>(path: string, body: Object = {}, headers: HttpHeaders | {} = {}): Observable<T> {
+    return this.request(HttpMethod.Post, path, body, headers);
   }
 
   public delete<T>(path: string, body?: Object): Observable<T> {
@@ -32,7 +24,8 @@ export abstract class AbstractApiService {
     method: HttpMethod,
     path: string,
     body: Object = {},
+    headers?: HttpHeaders | {},
   ): Observable<T> {
-    return this.http.request<T>(method, `${this.apiUri}/${path}`, body);
+    return this.http.request<T>(method, `${this.apiUri}/${path}`, { body, headers });
   }
 }

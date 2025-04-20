@@ -1,0 +1,43 @@
+<form class="form"
+      tuiCardLarge
+      tuiForm="m"
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      [style.max-width.rem]="32"
+      tuiAppearance="floating"
+>
+  <header tuiHeader class="form__header">
+    <div>
+      <button tuiButton
+              type="button"
+              iconStart="arrow-left"
+              appearance="flat"
+              routerLink="../sign-in"
+      >Login
+      </button>
+    </div>
+    <h1 tuiTitle>Registration</h1>
+  </header>
+  <div class="form__fields">
+    <tui-textfield tuiTextfieldSize="m">
+      <label tuiLabel>Username</label>
+      <input tuiTextfield type="text" formControlName="username"/>
+    </tui-textfield>
+    <tui-textfield tuiTextfieldSize="m">
+      <label tuiLabel>E-mail</label>
+      <input tuiTextfield type="text" formControlName="email"/>
+    </tui-textfield>
+    <tui-textfield tuiTextfieldSize="m">
+      <label tuiLabel>Password</label>
+      <input tuiTextfield type="password" formControlName="password"/>
+    </tui-textfield>
+  </div>
+  <button tuiButton
+          type="submit"
+          [disabled]="form.invalid || loader.loadingState"
+          [loading]="loader.loadingState"
+          size="m"
+  >Sign Up
+  </button>
+  <tui-error [error]="computedError"/>
+</form>

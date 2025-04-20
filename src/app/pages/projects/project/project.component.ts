@@ -3,7 +3,7 @@ import {ProjectsService} from '../services/projects.service';
 import {AsyncPipe} from '@angular/common';
 import {TuiCardMedium, TuiHeader} from '@taiga-ui/layout';
 import {takeUntilDestroyed, toObservable} from '@angular/core/rxjs-interop';
-import {filter, Observable, switchMap, tap} from 'rxjs';
+import {combineLatest, combineLatestAll, filter, Observable, switchMap, tap} from 'rxjs';
 import {TuiAppearance, TuiButton, TuiLoader} from '@taiga-ui/core';
 import {RouterLink} from '@angular/router';
 import {LoaderService} from '../../../shared/services/loader.service';
@@ -35,17 +35,19 @@ export class ProjectComponent {
   readonly projectId = input<string>();
 
   private readonly projectService = inject(ProjectsService);
-  private readonly loader = inject(LoaderService);
+  public readonly loader = inject(LoaderService);
 
-  public project$: Observable<Array<Project>>;
-  public loading$ = this.loader.loading$;
+  public project$: Observable<Array<Project>> = combineLatest(
+    toObservable(this.projectId),
+    this.loader.loading$
+  ).pipe(
+    filter(([id, loading]) => Boolean(id && loading)),
+    switchMap(([id]) => this.projectService.getProject(id as string)),
+    tap(() => this.loader.toggle(false)),
+    takeUntilDestroyed(),
+  );
 
   constructor() {
-    this.project$ = toObservable(this.projectId).pipe(
-      filter(Boolean),
-      switchMap(id => this.projectService.getProject(id)),
-      tap(() => this.loader.toggle(false)),
-      takeUntilDestroyed(),
-    );
+    this.loader.toggle(true);
   }
 }

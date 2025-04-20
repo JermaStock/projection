@@ -1,16 +1,14 @@
 import {Routes} from '@angular/router';
-import {ProjectComponent} from './project/project.component';
-import {ProjectsListComponent} from './projects-list/projects-list.component';
 
 export const router: Routes = [
   {
     path: '',
     title: 'Projects',
-    loadComponent: () => ProjectsListComponent,
+    loadComponent: () => import('./projects-list/projects-list.component').then(c => c.ProjectsListComponent),
   },
   {
     path: ':projectId',
     title: 'Project',
-    loadComponent: () => ProjectComponent,
+    loadComponent: () => import('./project/project.component').then(c => c.ProjectComponent),
   },
 ]

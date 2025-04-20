@@ -1,6 +1,23 @@
 <header class="header">
   <h1 class="header__title"
-      tuiTitle="l"
+      tuiTitle="m"
       routerLink="./"
-  >Projects-storage projection</h1>
+  >
+    <tui-icon icon="braces"/>
+    Data Warehouse
+  </h1>
+
+ @if (authStorage.tokenState$ | async) {
+   <button tuiButton
+           iconStart="arrow-left-from-line"
+           size="m"
+           (click)="logOut()"
+   >Log Out</button>
+ }@else {
+   <button tuiButton
+           size="m"
+           routerLink="./auth/sign-in"
+   >Sign In</button>
+ }
+
 </header>
