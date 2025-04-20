@@ -11,7 +11,6 @@ export class AuthStorageService extends AbstractStorageService {
   private tokenStateSubject = new BehaviorSubject(null);
   public tokenState$ = this.tokenStateSubject.asObservable().pipe(
     switchMap(() => of(this.get())),
-    tap(console.log),
   );
 
   constructor(
