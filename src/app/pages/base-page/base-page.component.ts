@@ -21,11 +21,4 @@ import {ProjectsList} from '../../core/models';
   styleUrl: './base-page.component.scss'
 })
 export class BasePageComponent {
-  public projects$: Observable<Array<ProjectsList>>;
-
-  private readonly projectsService = inject(ProjectsService);
-
-  constructor() {
-    this.projects$ = this.projectsService.getProjects();
-  }
 }

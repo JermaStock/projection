@@ -1,12 +1,12 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {
   FormBuilder,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
 import {AuthService} from '../services/auth.service';
-import {TuiAppearance, TuiButton, TuiError, TuiTextfield, TuiTitle} from '@taiga-ui/core';
+import {TuiAppearance, TuiButton, TuiError, TuiLink, TuiTextfield, TuiTitle} from '@taiga-ui/core';
 import {filter, map, switchMap, takeUntil} from 'rxjs';
 import {AuthStorageService} from '../services/auth-storage.service';
 import {TuiInputModule, TuiInputPasswordModule} from '@taiga-ui/legacy';
@@ -31,7 +31,9 @@ import {AuthUserCredentials} from '../../models';
     TuiHeader,
     TuiTitle,
     TuiError,
-    TuiButtonLoading
+    TuiButtonLoading,
+    RouterLink,
+    TuiLink
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',

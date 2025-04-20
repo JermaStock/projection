@@ -7,7 +7,7 @@
         [style.max-width.rem]="32"
         tuiAppearance="floating"
   >
-    <header tuiHeader>
+    <header tuiHeader class="form__header">
       <h1 tuiTitle>Auth</h1>
     </header>
     <div class="form__fields">
@@ -20,6 +20,9 @@
         <input tuiTextfield type="password" formControlName="password"/>
       </tui-textfield>
     </div>
+    <span tuiSubtitle="h6">Don't have an account yet?
+      <a tuiLink routerLink="../sign-up">Sign up</a>
+    </span>
     <button tuiButton
             type="submit"
             [disabled]="form.invalid || loader.loadingState"

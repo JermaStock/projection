@@ -5,6 +5,12 @@
   max-height: fit-content;
   min-height: fit-content;
 
+  &__header {
+    h1 {
+      text-align: center;
+    }
+  }
+
   &__fields {
     display: flex;
     flex-direction: column;

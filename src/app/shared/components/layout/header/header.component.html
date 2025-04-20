@@ -2,8 +2,18 @@
   <h1 class="header__title"
       tuiTitle="l"
       routerLink="./"
-  >Projects-storage projection</h1>
+  >Storage-FE</h1>
 
-
- <button tuiButton (click)="logOut()">LOG OUT</button>
+ @if (authStorage.tokenState$ | async) {
+   <button tuiButton
+           size="m"
+           routerLink="./auth/sign-in"
+   >Sign In</button>
+ }@else {
+   <button tuiButton
+           iconStart="arrow-left-from-line"
+           size="m"
+           (click)="logOut()"
+   >Log Out</button>
+ }
 </header>
