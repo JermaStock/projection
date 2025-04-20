@@ -9,14 +9,15 @@
 
  @if (authStorage.tokenState$ | async) {
    <button tuiButton
-           size="m"
-           routerLink="./auth/sign-in"
-   >Sign In</button>
- }@else {
-   <button tuiButton
            iconStart="arrow-left-from-line"
            size="m"
            (click)="logOut()"
    >Log Out</button>
+ }@else {
+   <button tuiButton
+           size="m"
+           routerLink="./auth/sign-in"
+   >Sign In</button>
  }
+
 </header>

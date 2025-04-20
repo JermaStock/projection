@@ -1,16 +1,17 @@
 import {Inject, Injectable} from '@angular/core';
 import {AbstractStorageService} from '../../../shared/services/storage.service';
 import {AUTH_STORAGE_PREFIX} from '../../providers/storage.providers';
-import {of, Subject, switchMap} from 'rxjs';
+import {BehaviorSubject, of, Subject, switchMap, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthStorageService extends AbstractStorageService {
 
-  private tokenStateSubject = new Subject();
+  private tokenStateSubject = new BehaviorSubject(null);
   public tokenState$ = this.tokenStateSubject.asObservable().pipe(
     switchMap(() => of(this.get())),
+    tap(console.log),
   );
 
   constructor(
@@ -24,13 +25,17 @@ export class AuthStorageService extends AbstractStorageService {
   }
 
   public set(item: string | null): void {
-    this.tokenStateSubject.next(void 0);
-    return this.setItem(item);
+    this.setItem(item);
+    this.actualizeTokenState();
   }
 
   public remove(): void {
-    this.tokenStateSubject.next(void 0);
-    return this.deleteItem();
+    this.deleteItem();
+    this.actualizeTokenState();
+  }
+
+  public actualizeTokenState() {
+    this.tokenStateSubject.next(null);
   }
 
 }

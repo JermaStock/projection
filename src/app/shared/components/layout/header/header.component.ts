@@ -21,8 +21,12 @@ import {AsyncPipe} from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-  public readonly authStorage = inject(AuthStorageService);
+  public authStorage = inject(AuthStorageService);
   private router = inject(Router);
+
+  constructor() {
+    this.authStorage.actualizeTokenState();
+  }
 
   logOut(): void {
     this.authStorage.remove();

@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
 import {provideRouter, withComponentInputBinding} from '@angular/router';
 import { NG_EVENT_PLUGINS } from '@taiga-ui/event-plugins';
 
