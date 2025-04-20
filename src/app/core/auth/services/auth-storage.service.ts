@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {AbstractStorageService} from '../../../shared/services/storage.service';
 import {AUTH_STORAGE_PREFIX} from '../../providers/storage.providers';
-import {BehaviorSubject, of, Subject, switchMap, tap} from 'rxjs';
+import {BehaviorSubject, of, switchMap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

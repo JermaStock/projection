@@ -1,9 +1,7 @@
-import {ChangeDetectionStrategy, Component, computed, effect, inject, signal} from '@angular/core';
-import {TuiHeader} from '@taiga-ui/layout';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
 import {TuiButton, TuiIcon, TuiTitle} from '@taiga-ui/core';
 import {AuthStorageService} from '../../../../core/auth/services/auth-storage.service';
-import {toSignal} from '@angular/core/rxjs-interop';
 import {AsyncPipe} from '@angular/common';
 
 @Component({
