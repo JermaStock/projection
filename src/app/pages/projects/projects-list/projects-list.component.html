@@ -32,7 +32,9 @@
       </div>
     }
 
-    <div>Total projects: <b>{{ projects?.length }}</b></div>
+    @if (!loader.loadingState) {
+      <div>Total projects: <b>{{ projects?.length }}</b></div>
+    }
   </ng-container>
 
 </div>

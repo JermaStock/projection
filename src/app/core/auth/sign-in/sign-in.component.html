@@ -1,18 +1,32 @@
 @defer (on timer(90)) {
-
-  <form [formGroup]="form">
-    <div>
-      <label>Login</label>
-      <input formControlName="username"/>
+  <form class="form"
+        tuiCardLarge
+        tuiForm="m"
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+        [style.max-width.rem]="32"
+        tuiAppearance="floating"
+  >
+    <header tuiHeader>
+      <h1 tuiTitle>Auth</h1>
+    </header>
+    <div class="form__fields">
+      <tui-textfield tuiTextfieldSize="m">
+        <label tuiLabel>Username</label>
+        <input tuiTextfield type="text" formControlName="username"/>
+      </tui-textfield>
+      <tui-textfield tuiTextfieldSize="m">
+        <label tuiLabel>Password</label>
+        <input tuiTextfield type="password" formControlName="password"/>
+      </tui-textfield>
     </div>
-   <div>
-     <label>Password</label>
-     <input formControlName="password"/>
-   </div>
-
-   <div>
-     <button type="button" (click)="submit()" [disabled]="form.invalid" tuiButton>Login request</button>
-   </div>
+    <button tuiButton
+            type="submit"
+            [disabled]="form.invalid || loader.loadingState"
+            [loading]="loader.loadingState"
+            size="m"
+    >Sign In
+    </button>
+    <tui-error [error]="computedError"/>
   </form>
-
 }

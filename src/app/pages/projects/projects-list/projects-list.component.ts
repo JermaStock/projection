@@ -37,7 +37,7 @@ import {CountPipe} from '../../../core/pipes/count.pipe';
 })
 export class ProjectsListComponent {
   private readonly projectsService = inject(ProjectsService);
-  private readonly loader = inject(LoaderService);
+  public readonly loader = inject(LoaderService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
@@ -48,11 +48,19 @@ export class ProjectsListComponent {
     tap(() => this.loader.toggle(false)),
   );
 
-  navigateToProject(project: ProjectsList) {
+  constructor() {
+    this.refresh();
+  }
+
+  public navigateToProject(project: ProjectsList) {
     this.router.navigate([project.name], {relativeTo: this.route}).then();
   }
 
-  updateProjects() {
+  public updateProjects() {
+    this.refresh();
+  }
+
+  private refresh() {
     this.loader.toggle(true);
   }
 }
