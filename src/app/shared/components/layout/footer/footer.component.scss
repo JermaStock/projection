@@ -2,12 +2,53 @@
 
 .footer {
   @include section-offset();
-  justify-content: flex-end;
+  position: relative;
+  align-items: flex-end;
+  flex-direction: column-reverse;
+  min-height: auto;
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1.86fr 1fr
+  }
 
   &__credits {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+
+  &__version {
+    position: relative;
+    align-self: center;
+
+    &-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__heart-icon {
+    color: var(--tui-text-action);
+    animation: heartbeat 2s ease-in-out infinite ;
+
+    @keyframes heartbeat {
+      0% {
+        scale: 1;
+      }
+      50% {
+        scale: 1.21;
+      }
+      100% {
+        scale: 1;
+      }
+    }
   }
 
   .credits {

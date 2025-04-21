@@ -36,7 +36,6 @@ import {TuiValidationError} from '@taiga-ui/cdk';
     TuiTextfieldOptionsDirective,
     TuiTitle,
     RouterLink,
-    TuiLink
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'

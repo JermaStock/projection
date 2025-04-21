@@ -26,10 +26,7 @@ import {Project} from '../../../core/models';
   styleUrl: './project.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{
-    provide: LoaderService,
-    useClass: LoaderService,
-  }]
+  providers: [LoaderService]
 })
 export class ProjectComponent {
   readonly projectId = input<string>();

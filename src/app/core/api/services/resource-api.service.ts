@@ -6,7 +6,7 @@ import {AbstractApiService} from './abstract-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsApiService extends AbstractApiService {
+export class ResourceApiService extends AbstractApiService {
   constructor(
     @Inject(PROJECTS_API_URI) protected apiUri: string,
     http: HttpClient,

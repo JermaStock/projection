@@ -1,4 +1,13 @@
 <footer class="footer">
+
+  @if (projectVersion$ | async; as version) {
+    <span class="footer__version-text">
+        <tui-icon class="footer__heart-icon" [icon]="'heart-pulse'"/>
+          Backend ver.: {{ version }}
+        </span>
+  }
+
+
   <div class="footer__credits">
     <ul class="credits">
       <li class="credits__author">
